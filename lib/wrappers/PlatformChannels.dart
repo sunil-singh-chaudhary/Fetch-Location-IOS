@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-
 import '../viewmodel/locationchangenotifier.dart';
 
-const platform =  MethodChannel('com.rocky.flutter_location');
+const methodChannel =  MethodChannel('com.rocky.flutter_location');
 const eventChannel = EventChannel('com.location.eventchannel');
 
   void requestLocationPermission() async {
-    const platform = MethodChannel('com.rocky.flutter_location');
     try {
-      final bool result = await platform.invokeMethod('requestLocationPermission');
+      final bool result = await methodChannel.invokeMethod('requestLocationPermission');
       debugPrint('Location Result: $result');
     } on PlatformException catch (e) {
       debugPrint('Error requesting location permission: ${e.message}');
@@ -25,7 +23,7 @@ const eventChannel = EventChannel('com.location.eventchannel');
         double latitude = event['latitude'];
         double longitude = event['longitude'];
         debugPrint('Received location update - Latitude: $latitude, Longitude: $longitude');
-        //TODO: Update lat long to provider
+        // TODO: Update lat long to Provider
 
             Provider.of<NotificationChangeNotifier>(context, listen: false)
         .updateMessage(latitude.toString(), longitude.toString());
