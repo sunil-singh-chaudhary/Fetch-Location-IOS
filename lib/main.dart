@@ -19,7 +19,6 @@ class MyApp extends StatelessWidget {
     return   MaterialApp(
       home:  ChangeNotifierProvider(
                 create: (context) => NotificationChangeNotifier(),
-
         child: const MyHomePage()),
     );
   }

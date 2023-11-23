@@ -11,7 +11,7 @@ const eventChannel = EventChannel('com.location.eventchannel');
     const platform = MethodChannel('com.rocky.flutter_location');
     try {
       final bool result = await platform.invokeMethod('requestLocationPermission');
-      debugPrint('Location Permission Result: $result');
+      debugPrint('Location Result: $result');
     } on PlatformException catch (e) {
       debugPrint('Error requesting location permission: ${e.message}');
     }
@@ -25,13 +25,15 @@ const eventChannel = EventChannel('com.location.eventchannel');
         double latitude = event['latitude'];
         double longitude = event['longitude'];
         debugPrint('Received location update - Latitude: $latitude, Longitude: $longitude');
+        //TODO: Update lat long to provider
+
             Provider.of<NotificationChangeNotifier>(context, listen: false)
         .updateMessage(latitude.toString(), longitude.toString());
 
       }
     },
     onError: (dynamic error) {
-      debugPrint('Error receiving location update: $error');
+      debugPrint('Flutter side Error receiving location update: $error');
     },
   );
     

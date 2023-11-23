@@ -9,13 +9,10 @@ class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
-
   @override
   void initState() {
     super.initState();
@@ -33,7 +30,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Consumer<NotificationChangeNotifier>(
         builder: (context, notifier, child) =>
          Center(
-          child: Text(' location IOS/Android -->  ${notifier.lattitude}, ${notifier.longitude}'),
+          child: Text('location IOS/Android -->  lat-> ${notifier.lattitude},long-> ${notifier.longitude}'),
         ),
       ),
     );
