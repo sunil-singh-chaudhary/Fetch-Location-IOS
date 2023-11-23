@@ -1,4 +1,6 @@
 package com.example.flutter_ios_demo_app
 
-class LocationEvent {
-}
+data class LocationEvent(
+    val latitude:Double?,
+    val longitude:Double?
+)

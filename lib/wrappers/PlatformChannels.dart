@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_ios_demo_app/locationchangenotifier.dart';
 import 'package:provider/provider.dart';
+
+import '../viewmodel/locationchangenotifier.dart';
 
 const platform =  MethodChannel('com.rocky.flutter_location');
 const eventChannel = EventChannel('com.location.eventchannel');
@@ -16,7 +17,6 @@ const eventChannel = EventChannel('com.location.eventchannel');
     }
   }
 
-// Dart code
 
   void getLocationContiniouslly( BuildContext context) {
     eventChannel.receiveBroadcastStream().listen((event) {
@@ -25,7 +25,6 @@ const eventChannel = EventChannel('com.location.eventchannel');
         double latitude = event['latitude'];
         double longitude = event['longitude'];
         debugPrint('Received location update - Latitude: $latitude, Longitude: $longitude');
-        // Handle the location data as needed
             Provider.of<NotificationChangeNotifier>(context, listen: false)
         .updateMessage(latitude.toString(), longitude.toString());
 
